@@ -1,10 +1,3 @@
-pragma solidity ^0.5.0;
-
-import "./KaseiCoin.sol";
-import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v2.5.0/contracts/crowdsale/Crowdsale.sol";
-import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v2.5.0/contracts/crowdsale/emission/MintedCrowdsale.sol";
-
-
 // Have the KaseiCoinCrowdsale contract inherit the following OpenZeppelin:
 // * Crowdsale
 // * MintedCrowdsale
@@ -57,18 +50,18 @@ import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v2.5
 import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v2.5.0/contracts/crowdsale/emission/MintedCrowdsale.sol";
 
 contract KaseiCoinCrowdsale is Crowdsale, MintedCrowdsale {
-    // Provide parameters for all of the features of your crowdsale, such as the `rate`, `wallet` for fundraising, and `token`.
-    constructor(uint initial_supply) ERC20Detailed("KaseiCoin", "KC", 18) public Crowdsale(rate, wallet, token) {
-    // constructor can stay empty
+    constructor(uint initial_supply) public Crowdsale(rate, wallet, token) {
     }
 
 contract KaseiCoinCrowdsaleDeployer {
+    KaiseiCoin token;
+    KaiseiCoinCrowdsale kasei_crowdsale;
     address public kasei_token_address;
     address public kasei_crowdsale_address;
     constructor(
-        string memory name,
-        string memory symbol,
-        address payable wallet
+        name,
+        symbol,
+        wallet
     ) 
         public 
     {
